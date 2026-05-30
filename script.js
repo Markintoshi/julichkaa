@@ -1,8 +1,4 @@
-const CONTACT_CONFIG = {
-  whatsapp: "",
-  telegram: "",
-  email: "",
-};
+const SMS_PHONE = "+37255665848";
 
 const state = {
   date: "",
@@ -115,12 +111,6 @@ function buildMessage() {
   ].join("\n");
 }
 
-function hasDirectContact() {
-  return Boolean(
-    CONTACT_CONFIG.whatsapp || CONTACT_CONFIG.telegram || CONTACT_CONFIG.email
-  );
-}
-
 function persistSelection() {
   const payload = {
     ...state,
@@ -132,44 +122,11 @@ function persistSelection() {
 
 async function deliverSelection() {
   const message = buildMessage();
-
-  if (CONTACT_CONFIG.whatsapp) {
-    const phone = CONTACT_CONFIG.whatsapp.replace(/[^\d]/g, "");
-    window.location.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    return true;
-  }
-
-  if (CONTACT_CONFIG.telegram) {
-    const url = `${window.location.origin}${window.location.pathname}`;
-    window.location.href = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(message)}`;
-    return true;
-  }
-
-  if (CONTACT_CONFIG.email) {
-    window.location.href = `mailto:${CONTACT_CONFIG.email}?subject=${encodeURIComponent("Ответ на приглашение")}&body=${encodeURIComponent(message)}`;
-    return true;
-  }
-
-  if (navigator.share) {
-    await navigator.share({
-      title: "Ответ на приглашение",
-      text: message,
-    });
-    return true;
-  }
-
-  if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(message);
-    window.alert("Итог скопирован. Теперь его можно отправить Марку.");
-    return true;
-  }
-
-  window.alert(message);
+  const phone = SMS_PHONE.replace(/[^\d+]/g, "");
+  const isAppleDevice = /iPad|iPhone|iPod|Mac/.test(navigator.userAgent);
+  const separator = isAppleDevice ? "&" : "?";
+  window.location.href = `sms:${phone}${separator}body=${encodeURIComponent(message)}`;
   return true;
-}
-
-function setSaveButtonLabel() {
-  saveBtn.textContent = hasDirectContact() ? "Отправить Марку" : "Сохранить ответ";
 }
 
 acceptBtn.addEventListener("click", () => {
@@ -245,5 +202,4 @@ saveBtn.addEventListener("click", async () => {
 });
 
 setMinDate();
-setSaveButtonLabel();
 moveDeclineButton();
