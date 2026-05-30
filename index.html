@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Приглашение на свидание</title>
+    <meta
+      name="description"
+      content="Мобильное приглашение Юлии на свидание от Марка."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Marck+Script&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+
+      <main class="phone-frame">
+        <section class="panel is-active" data-step="intro">
+          <p class="eyebrow">Особое приглашение</p>
+          <h1>Марк приглашает Юлию на свидание</h1>
+          <p class="lead">
+            Без длинных речей. Просто красивое предложение провести время вместе.
+          </p>
+
+          <div class="hero-note">
+            <span>Дата решается тобой</span>
+            <span>Настроение тоже</span>
+          </div>
+
+          <div class="cta-zone" id="cta-zone">
+            <button class="button button-primary" id="accept-btn" type="button">
+              Принять
+            </button>
+            <button class="button button-ghost" id="decline-btn" type="button">
+              Отказать
+            </button>
+          </div>
+
+          <p class="microcopy" id="decline-hint">
+            Кнопка «отказать» здесь чисто для драматического эффекта.
+          </p>
+        </section>
+
+        <section class="panel" data-step="calendar">
+          <p class="eyebrow">Шаг 1</p>
+          <h2>Когда тебе удобно?</h2>
+          <p class="lead">Выбери день и примерное время.</p>
+
+          <label class="field">
+            <span class="field-label">Свободный день</span>
+            <input class="date-input" id="date-input" type="date" />
+          </label>
+
+          <div class="time-grid" id="time-grid" role="group" aria-label="Время">
+            <button class="chip" data-time="Утро" type="button">Утро</button>
+            <button class="chip" data-time="День" type="button">День</button>
+            <button class="chip" data-time="Вечер" type="button">Вечер</button>
+          </div>
+
+          <button class="button button-primary button-wide" id="to-wishes" type="button">
+            Дальше
+          </button>
+        </section>
+
+        <section class="panel" data-step="wishes">
+          <p class="eyebrow">Шаг 2</p>
+          <h2>Что больше хочется?</h2>
+          <p class="lead">Можно выбрать несколько вариантов.</p>
+
+          <div class="wish-grid" id="wish-grid">
+            <button class="wish-card" data-wish="Кофе" type="button">Кофе</button>
+            <button class="wish-card" data-wish="Пицца" type="button">Пицца</button>
+            <button class="wish-card" data-wish="Суши" type="button">Суши</button>
+            <button class="wish-card" data-wish="Прогулка" type="button">Прогулка</button>
+            <button class="wish-card" data-wish="Спорт" type="button">Спорт</button>
+            <button class="wish-card" data-wish="Кино" type="button">Кино</button>
+          </div>
+
+          <button class="button button-primary button-wide" id="to-summary" type="button">
+            Посмотреть итог
+          </button>
+        </section>
+
+        <section class="panel" data-step="summary">
+          <p class="eyebrow">Итог</p>
+          <h2>План почти готов</h2>
+          <p class="lead">Вот что выбрала Юлия.</p>
+
+          <div class="summary-card" id="summary-card"></div>
+
+          <button class="button button-primary button-wide" id="save-btn" type="button">
+            Отправить Марку
+          </button>
+          <button class="button button-ghost button-wide" id="back-btn" type="button">
+            Изменить выбор
+          </button>
+        </section>
+
+        <section class="panel" data-step="done">
+          <p class="eyebrow">Готово</p>
+          <h2>Спасибо</h2>
+          <p class="lead" id="thanks-text">
+            Выбор сохранён. Теперь осталось только дождаться самого свидания.
+          </p>
+          <p class="signature">С любовью к деталям, в этот день.</p>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
